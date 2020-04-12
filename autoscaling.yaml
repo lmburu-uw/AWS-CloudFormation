@@ -40,7 +40,7 @@ Resources:
       LaunchConfigurationName : "T2.Micro Amazon Linux 2"
       ImageId: "ami-0323c3dd2da7fb37d"
       InstanceType: "t2.micro"
-      BlockDeviceMappings: 
+      BlockDeviceMappings: # seems to create EBS volumes and mounts them on /dev/sda1, /dev/sdm..
         - DeviceName : /dev/sda1 
           Ebs: 
             VolumeSize: 50
