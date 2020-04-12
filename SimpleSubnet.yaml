@@ -1,0 +1,24 @@
+---
+#Purpose: The AWS CloudFormation template version that the template conforms to. 
+#Required?: Optional
+AWSTemplateFormatVersion: "2010-09-09"
+
+#Purpose: A text String that describes the template
+#Required?: Optional!, but must follow AWSTemplateFormatVersion
+Description:
+  "Creates a new subnet, with a specific CIDR, in a specific VPC and availability zone"
+
+#Purpose: Specifies the stack resources and their properties, such as EC2, S3. 
+#References: Resources and Outputs Section, can refer to this section. 
+#Required?: Required!
+Resources:
+  EC2Subnet:
+    Type: AWS::EC2::Subnet
+    Properties: 
+      AvailabilityZone: "us-east-1d"
+      CidrBlock: "172.31.96.0/20"
+      MapPublicIpOnLaunch: false 
+      Tags: 
+        - Key: foo 
+          Value: bar
+      VpcId: "vpc-06e878920cf6b0f6e"
