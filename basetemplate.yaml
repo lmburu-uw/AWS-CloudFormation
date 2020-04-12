@@ -1,0 +1,50 @@
+---
+#Purpose: The AWS CloudFormation template version that the template conforms to. 
+#Required?: Optional
+AWSTemplateFormatVersion: "version date"
+
+#Purpose: A text String that describes the template
+#Required?: Optional!
+Description:
+  String
+
+#Purpose: Objects that provide additional information about the template
+#Required?: Optional!
+Metadata:
+  template metadata
+
+#Purpose: Values to pass to the template at runtime (when creating or updating the stack)
+#References: Resources and Outputs sections can refer to entries in the section. 
+#Required?: Optional!
+Parameters:
+  set of parameters
+
+
+#Purpose: A mapping of key and associated values, that can be used to specifiy conditional parameter values 
+#It behaves like a lookup table. 
+#References: Resource and Output sections, can match a key in this section using the Fn::FindInMap intrinsic function.
+#Required?: Optional!
+Mappings:
+  set of mappings
+
+#Purpose: Conditions that control whether certain resources are created or whether certain resource properties are assigned
+#a value during stack creation or update. 
+#Required?: Optional!
+Conditions:
+  set of conditions
+
+#Purpose: For serveless applications(lambda-based applications)
+#Required?: Optional!
+Transform:
+  set of transforms
+
+#Purpose: Specifie s the stack resources and their properties, such as EC2, S3. 
+#References: Resources and Outputs Section, can refer to this section. 
+#Required?: Required!
+Resources:
+  set of resources
+
+#Purpose: Describes the values that are returned whenever you view your stack's properties. 
+#Required?: Optional
+Outputs:
+  set of outputs
