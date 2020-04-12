@@ -1,0 +1,53 @@
+#TODO: instances keep cycling between terminate an pending state
+#Research on BlockDeviceMappings property
+
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description:
+  "Launch T2.Micro Amazon Linux 2 AMI', at Mininum 1 at Max 5, using the MyLaunchConfiguration 
+   Specifications and send an SNS notification, when an instance is launched or terminated" 
+
+Resources: 
+  MyAutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup 
+    Properties: 
+      AutoScalingGroupName: "Autoscaling group for application Z"
+      AvailabilityZones:
+        Fn::GetAZs : ""
+      MinSize: 1
+      MaxSize: 5 
+      LaunchConfigurationName: !Ref MyLaunchConfiguration
+      MetricsCollection: 
+        - Granularity: 1Minute
+          Metrics: 
+            - GroupMinSize
+            - GroupMaxSize
+            - GroupDesiredCapacity
+            - GroupInServiceInstances
+            - GroupPendingInstances 
+            - GroupStandbyInstances
+            - GroupTerminatingInstances
+            - GroupTotalInstances
+      NotificationConfigurations: 
+        - NotificationTypes:
+            - autoscaling:EC2_INSTANCE_LAUNCH
+            - autoscaling:EC2_INSTANCE_TERMINATE 
+          TopicARN: "arn:aws:sns:us-east-1:389470143043:NotifyMe"
+
+  MyLaunchConfiguration: 
+    Type: AWS::AutoScaling::LaunchConfiguration 
+    Properties:
+      LaunchConfigurationName : "T2.Micro Amazon Linux 2"
+      ImageId: "ami-0323c3dd2da7fb37d"
+      InstanceType: "t2.micro"
+      BlockDeviceMappings: 
+        - DeviceName : /dev/sda1 
+          Ebs: 
+            VolumeSize: 50
+            VolumeType: "io1"
+            Iops: 200
+        - DeviceName: /dev/sdm 
+          Ebs: 
+            VolumeSize: 50 
+            DeleteOnTermination: "false"
+   
