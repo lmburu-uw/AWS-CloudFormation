@@ -1,14 +1,15 @@
 ---
 #Purpose: The AWS CloudFormation template version that the template conforms to. 
 #Required?: Optional
-AWSTemplateFormatVersion: "version date"
+AWSTemplateFormatVersion: "2010-09-09"
 
 #Purpose: A text String that describes the template
-#Required?: Optional!
+#Required?: Optional!, but must follow AWSTemplateFormatVersion
 Description:
   String
 
 #Purpose: Objects that provide additional information about the template
+#For example, additional details about sepcific resources. 
 #Required?: Optional!
 Metadata:
   template metadata
